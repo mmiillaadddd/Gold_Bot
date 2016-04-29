@@ -1,4 +1,4 @@
-﻿--Begin supergrpup.lua
+--Begin supergrpup.lua
 --Check members #Add supergroup
 local function check_member_super(cb_extra, success, result)
   local receiver = cb_extra.receiver
@@ -93,7 +93,7 @@ for k,v in pairsByKeys(result) do
 if not v.first_name then
 	name = " "
 else
-	vname = v.first_name:gsub("‮", "")
+	vname = v.first_name:gsub("â€®", "")
 	name = vname:gsub("_", " ")
 	end
 		text = text.."\n"..i.." - "..name.."["..v.peer_id.."]"
@@ -114,11 +114,11 @@ end
 
 --Get and output info about supergroup
 local function callback_info(cb_extra, success, result)
-local title ="Info for SuperGroup: ["..result.title.."]\n\n"
-local admin_num = "Admin count: "..result.admins_count.."\n"
-local user_num = "User count: "..result.participants_count.."\n"
-local kicked_num = "Kicked user count: "..result.kicked_count.."\n"
-local channel_id = "ID: "..result.peer_id.."\n"
+local title ="Ø§ÛŒØ¯ÛŒ Ø³ÙˆÙ¾Ø± Ú¯Ø±ÙˆÙ‡: "..result.title.."\n\n"
+local admin_num = "ØªØ¹Ø¯Ø§Ø¯ Ø§Ø¯Ù…ÛŒÙ† Ù‡Ø§: "..result.admins_count.."\n"
+local user_num = "ØªØ¹Ø¯Ø§Ø¯ Ú©Ø§Ø±Ø¨Ø±Ø§Ù†: "..result.participants_count.."\n"
+local kicked_num = "ØªØ¹Ø¯Ø§Ø¯ Ú©Ø§Ø±Ø¨Ø±Ø§Ù† Ú©ÛŒÚ© Ø´Ø¯Ù‡: "..result.kicked_count.."\n"
+local channel_id = "Ø§ÛŒØ¯ÛŒ: "..result.peer_id.."\n"
 if result.username then
 	channel_username = "Username: @"..result.username
 else
@@ -136,7 +136,7 @@ for k,v in pairsByKeys(result) do
 if not v.print_name then
 	name = " "
 else
-	vname = v.print_name:gsub("‮", "")
+	vname = v.print_name:gsub("â€®", "")
 	name = vname:gsub("_", " ")
 end
 	if v.username then
@@ -165,7 +165,7 @@ for k,v in pairsByKeys(result) do
 if not v.print_name then
 	name = " "
 else
-	vname = v.print_name:gsub("‮", "")
+	vname = v.print_name:gsub("â€®", "")
 	name = vname:gsub("_", " ")
 end
 	if v.username then
@@ -189,11 +189,11 @@ local function lock_group_links(msg, data, target)
   end
   local group_link_lock = data[tostring(target)]['settings']['lock_link']
   if group_link_lock == 'yes' then
-    return 'Link posting is already locked'
+    return 'Ù‚ÙÙ„ Ù„ÛŒÙ†Ú© Ø§Ø² Ù‚Ø¨Ù„ ÙØ¹Ø§Ù„ Ø¨ÙˆØ¯Ù‡ Ø§Ø³Øª'
   else
     data[tostring(target)]['settings']['lock_link'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'Link posting has been locked'
+    return 'Ù‚ÙÙ„ Ù„ÛŒÙ†Ú© ÙØ¹Ø§Ù„ Ø´Ø¯'
   end
 end
 
@@ -203,11 +203,11 @@ local function unlock_group_links(msg, data, target)
   end
   local group_link_lock = data[tostring(target)]['settings']['lock_link']
   if group_link_lock == 'no' then
-    return 'Link posting is not locked'
+    return 'Ù‚ÙÙ„ Ù„ÛŒÙ†Ú© Ø§Ø² Ù‚Ø¨Ù„ Ø¨Ø§Ø² Ø¨ÙˆØ¯Ù‡ Ø§Ø³Øª'
   else
     data[tostring(target)]['settings']['lock_link'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'Link posting has been unlocked'
+    return 'Ù‚ÙÙ„ Ù„ÛŒÙ†Ú© Ø¨Ø§Ø² Ø´Ø¯'
   end
 end
 
@@ -216,15 +216,15 @@ local function lock_group_spam(msg, data, target)
     return
   end
   if not is_owner(msg) then
-    return "Owners only!"
+    return "ÙÙ‚Ø· Ù…Ø¯ÛŒØ± Ø§Ø±Ø´Ø¯ Ú¯Ø±ÙˆÙ‡"
   end
   local group_spam_lock = data[tostring(target)]['settings']['lock_spam']
   if group_spam_lock == 'yes' then
-    return 'SuperGroup spam is already locked'
+    return 'Ù‚ÙÙ„ Ø§Ø³Ù¾Ù… Ø§Ø² Ù‚Ø¨Ù„ ÙØ¹Ø§Ù„ Ø¨ÙˆØ¯Ù‡ Ø§Ø³Øª'
   else
     data[tostring(target)]['settings']['lock_spam'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'SuperGroup spam has been locked'
+    return 'Ù‚ÙÙ„ Ø§Ø³Ù¾Ù… ÙØ¹Ø§Ù„ Ø´Ø¯'
   end
 end
 
@@ -234,11 +234,11 @@ local function unlock_group_spam(msg, data, target)
   end
   local group_spam_lock = data[tostring(target)]['settings']['lock_spam']
   if group_spam_lock == 'no' then
-    return 'SuperGroup spam is not locked'
+    return 'Ù‚ÙÙ„ Ø§Ø³Ù¾Ù… Ø§Ø² Ù‚Ø¨Ù„ Ø¨Ø§Ø² Ø¨ÙˆØ¯Ù‡ Ø§Ø³Øª'
   else
     data[tostring(target)]['settings']['lock_spam'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'SuperGroup spam has been unlocked'
+    return 'Ù‚ÙÙ„ Ø§Ø³Ù¾Ù… Ø¨Ø§Ø² Ø´Ø¯'
   end
 end
 
@@ -248,11 +248,11 @@ local function lock_group_flood(msg, data, target)
   end
   local group_flood_lock = data[tostring(target)]['settings']['flood']
   if group_flood_lock == 'yes' then
-    return 'Flood is already locked'
+    return 'Ù‚ÙÙ„ ÙÙ„ÙˆØ¯ Ø§Ø² Ù‚Ø¨Ù„ ÙØ¹Ø§Ù„ Ø¨ÙˆØ¯Ù‡ Ø§Ø³Øª'
   else
     data[tostring(target)]['settings']['flood'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'Flood has been locked'
+    return 'Ù‚ÙÙ„ ÙÙ„ÙˆØ¯ ÙØ¹Ø§Ù„ Ø´Ø¯'
   end
 end
 
@@ -262,11 +262,11 @@ local function unlock_group_flood(msg, data, target)
   end
   local group_flood_lock = data[tostring(target)]['settings']['flood']
   if group_flood_lock == 'no' then
-    return 'Flood is not locked'
+    return 'Ù‚ÙÙ„ ÙÙ„ÙˆØ¯ Ø¨Ø§Ø² Ø¨ÙˆØ¯Ù‡ Ø§Ø³Øª'
   else
     data[tostring(target)]['settings']['flood'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'Flood has been unlocked'
+    return 'Ù‚ÙÙ„ ÙÙ„ÙˆØ¯ Ø¨Ø§Ø² Ø´Ø¯'
   end
 end
 
@@ -360,11 +360,11 @@ local function lock_group_tgservice(msg, data, target)
   end
   local group_tgservice_lock = data[tostring(target)]['settings']['lock_tgservice']
   if group_tgservice_lock == 'yes' then
-    return 'Tgservice is already locked'
+    return 'Ù‚ÙÙ„ Ù¾ÛŒØ§Ù… ÙˆØ±ÙˆØ¯ Ùˆ Ø®Ø±ÙˆØ¬ Ø§Ø² Ù‚Ø¨Ù„ ÙØ¹Ø§Ù„ Ø¨ÙˆØ¯Ù‡ Ø§Ø³Øª'
   else
     data[tostring(target)]['settings']['lock_tgservice'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'Tgservice has been locked'
+    return 'Ù‚ÙÙ„ Ù¾ÛŒØ§Ù… ÙˆØ±ÙˆØ¯ Ùˆ Ø®Ø±ÙˆØ¬ Ùˆ ÙØ¹Ø§Ù„ Ø´Ø¯'
   end
 end
 
@@ -374,11 +374,11 @@ local function unlock_group_tgservice(msg, data, target)
   end
   local group_tgservice_lock = data[tostring(target)]['settings']['lock_tgservice']
   if group_tgservice_lock == 'no' then
-    return 'TgService Is Not Locked!'
+    return 'Ù‚ÙÙ„ Ù¾ÛŒØ§Ù… ÙˆØ±ÙˆØ¯ Ùˆ Ø®Ø±ÙˆØ¬ ÙØ¹Ø§Ù„ Ù†Ø¨ÙˆØ¯Ù‡ Ø§Ø³Øª'
   else
     data[tostring(target)]['settings']['lock_tgservice'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'Tgservice has been unlocked'
+    return 'Ù‚ÙÙ„ Ù¾ÛŒØ§Ù… ÙˆØ±ÙˆØ¯ Ùˆ Ø®Ø±ÙˆØ¬ ØºÛŒØ± ÙØ¹Ø§Ù„ Ø´Ø¯'
   end
 end
 
@@ -388,11 +388,11 @@ local function lock_group_sticker(msg, data, target)
   end
   local group_sticker_lock = data[tostring(target)]['settings']['lock_sticker']
   if group_sticker_lock == 'yes' then
-    return 'Sticker posting is already locked'
+    return 'Ù‚ÙÙ„ Ø§Ø³ØªÛŒÚ©Ø± ÙØ¹Ø§Ù„ Ø¨ÙˆØ¯Ù‡ Ø§Ø³Øª'
   else
     data[tostring(target)]['settings']['lock_sticker'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'Sticker posting has been locked'
+    return 'Ù‚ÙÙ„ Ø§Ø³ØªÛŒÚ©Ø± ÙØ¹Ø§Ù„ Ø´Ø¯'
   end
 end
 
@@ -402,11 +402,11 @@ local function unlock_group_sticker(msg, data, target)
   end
   local group_sticker_lock = data[tostring(target)]['settings']['lock_sticker']
   if group_sticker_lock == 'no' then
-    return 'Sticker posting is already unlocked'
+    return 'Ø§Ø³ØªÛŒÚ©Ø± Ù‚ÙÙ„ Ù†Ø¨ÙˆØ¯Ù‡ Ø§Ø³Øª'
   else
     data[tostring(target)]['settings']['lock_sticker'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'Sticker posting has been unlocked'
+    return 'Ø§Ø±Ø³Ø§Ù„ Ø§Ø³ØªÛŒÚ©Ø± Ø¢Ø²Ø§Ø¯ Ø´Ø¯'
   end
 end
 
@@ -444,11 +444,11 @@ local function enable_strict_rules(msg, data, target)
   end
   local group_strict_lock = data[tostring(target)]['settings']['strict']
   if group_strict_lock == 'yes' then
-    return 'Settings are already strictly enforced'
+    return 'ØªÙ†Ø¸ÛŒÙ…Ø§Øª Ø§Ø² Ù‚Ø¨Ù„ Ø¨Ù‡ Ø´Ø¯Øª Ø§Ù†Ø¬Ø§Ù… Ù…ÛŒØ´Ø¯'
   else
     data[tostring(target)]['settings']['strict'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'Settings will be strictly enforced'
+    return 'Ø§Ø² Ø§ÛŒÙ† Ø¨Ù‡ Ø¨Ø¹Ø¯ ØªÙ†Ø¸ÛŒÙ…Ø§Øª Ø³Ø®Øª Ú¯ÛŒØ±Ø§Ù†Ù‡ ØªØ± Ø®ÙˆØ§Ù‡Ù†Ø¯ Ø¨ÙˆØ¯'
   end
 end
 
@@ -458,11 +458,11 @@ local function disable_strict_rules(msg, data, target)
   end
   local group_strict_lock = data[tostring(target)]['settings']['strict']
   if group_strict_lock == 'no' then
-    return 'Settings are not strictly enforced'
+    return 'ØªÙ†Ø¸ÛŒÙ…Ø§Øª Ø³Ø®Øª Ú¯ÛŒØ±Ø§Ù†Ù‡ ØºÛŒØ±ÙØ§Ù„ Ø§Ø³Øª'
   else
     data[tostring(target)]['settings']['strict'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'Settings will not be strictly enforced'
+    return 'ØªÙ†Ø¸ÛŒÙ…Ø§Øª Ø³Ø®Øª Ú¯ÛŒØ±Ø§Ù†Ù‡ Ø®Ø§Ù…ÙˆØ´ Ø´Ø¯'
   end
 end
 --End supergroup locks
@@ -475,25 +475,25 @@ local function set_rulesmod(msg, data, target)
   local data_cat = 'rules'
   data[tostring(target)][data_cat] = rules
   save_data(_config.moderation.data, data)
-  return 'SuperGroup rules set'
+  return 'Ù‚ÙˆØ§Ù†ÛŒÙ† Ø¨Ø§ Ù…ÙˆÙÙ‚ÛŒØª Ø«Ø¨Øª Ø´Ø¯ âœ”ï¸'
 end
 
 --'Get supergroup rules' function
 local function get_rules(msg, data)
   local data_cat = 'rules'
   if not data[tostring(msg.to.id)][data_cat] then
-    return 'No rules available.'
+    return 'Ù‚ÙˆØ§Ù†ÛŒÙ†ÛŒ ÙˆØ¬ÙˆØ¯ Ù†Ø¯Ø§Ø±Ø¯'
   end
   local rules = data[tostring(msg.to.id)][data_cat]
   local group_name = data[tostring(msg.to.id)]['settings']['set_name']
-  local rules = group_name..' rules:\n\n'..rules:gsub("/n", " ")
+  local rules = group_name..'Ù‚ÙˆØ§Ù†ÛŒÙ† :\n\n'..rules:gsub("/n", " ")
   return rules
 end
 
 --Set supergroup to public or not public function
 local function set_public_membermod(msg, data, target)
   if not is_momod(msg) then
-    return "For moderators only!"
+    return "ÙÙ‚Ø· Ø¨Ø±Ø§ÛŒ Ù…Ø¯ÛŒØ±Ø§Ù† ðŸš«"
   end
   local group_public_lock = data[tostring(target)]['settings']['public']
   local long_id = data[tostring(target)]['long_id']
@@ -502,12 +502,12 @@ local function set_public_membermod(msg, data, target)
 	save_data(_config.moderation.data, data)
   end
   if group_public_lock == 'yes' then
-    return 'Group is already public'
+    return 'Ú¯Ø±ÙˆÙ‡ Ø§Ø² Ù‚Ø¨Ù„ Ù¾Ø§Ø¨Ù„ÛŒÚ© Ø¨ÙˆØ¯Ù‡'
   else
     data[tostring(target)]['settings']['public'] = 'yes'
     save_data(_config.moderation.data, data)
   end
-  return 'SuperGroup is now: public'
+  return 'Ú¯Ø±ÙˆÙ‡ Ø¨Ù‡ Ù„ÛŒØ³Øª Ú¯Ø±ÙˆÙ‡ Ù‡Ø§ÛŒ Ù¾Ø§Ø¨Ù„ÛŒÚ© Ø§Ø¶Ø§ÙÙ‡ Ø´Ø¯'
 end
 
 local function unset_public_membermod(msg, data, target)
@@ -521,12 +521,12 @@ local function unset_public_membermod(msg, data, target)
 	save_data(_config.moderation.data, data)
   end
   if group_public_lock == 'no' then
-    return 'Group is not public'
+    return 'Ú¯Ø±ÙˆÙ‡ Ù¾Ø§Ø¨Ù„ÛŒÚ© Ù†ÛŒØ³Øª'
   else
     data[tostring(target)]['settings']['public'] = 'no'
 	data[tostring(target)]['long_id'] = msg.to.long_id
     save_data(_config.moderation.data, data)
-    return 'SuperGroup is now: not public'
+    return 'Ú¯Ø±ÙˆÙ‡ Ø§Ø² Ù„ÛŒØ³Øª Ú¯Ø±ÙˆÙ‡ Ù‡Ø§ÛŒ Ù¾Ø§Ø¨Ù„ÛŒÚ© Ø­Ø°Ù Ø´Ø¯'
   end
 end
 
@@ -565,7 +565,7 @@ end
 		end
 	end
   local settings = data[tostring(target)]['settings']
-  local text = "SuperGroup settings:\nLock links : "..settings.lock_link.."\nLock flood: "..settings.flood.."\nFlood sensitivity : "..NUM_MSG_MAX.."\nLock spam: "..settings.lock_spam.."\nLock Arabic: "..settings.lock_arabic.."\nLock Member: "..settings.lock_member.."\nLock RTL: "..settings.lock_rtl.."\nLock Tgservice : "..settings.lock_tgservice.."\nLock sticker: "..settings.lock_sticker.."\nPublic: "..settings.public.."\nStrict settings: "..settings.strict
+  local text = "âš™ØªÙ†Ø¸ÛŒÙ…Ø§Øª Ø³ÙˆÙ¾Ø± Ú¯Ø±ÙˆÙ‡:\nðŸ”¹Ù‚ÙÙ„ Ù„ÛŒÙ†Ú© : "..settings.lock_link.."\nðŸ”¸Ù‚ÙÙ„ ÙÙ„ÙˆØ¯: "..settings.flood.."\nðŸ”¹Ù…Ù‚Ø¯Ø§Ø± ÙÙ„ÙˆØ¯ : "..NUM_MSG_MAX.."\nðŸ”¸Ù‚ÙÙ„ Ø§Ø³Ù¾Ù… : "..settings.lock_spam.."\nðŸ”¹Ù‚ÙÙ„ Ø²Ø¨Ø§Ù† Ø¹Ø±Ø¨ÛŒ/ÙØ§Ø±Ø³ÛŒ: "..settings.lock_arabic.."\nðŸ”¸Ù‚ÙÙ„ Ø§Ø¹Ø¶Ø§ : "..settings.lock_member.."\nðŸ”¹Ù‚ÙÙ„ Ø±Ø§Ø³Øª Ø¨Ù‡ Ú†Ù¾ : "..settings.lock_rtl.."\nðŸ”¸Ù‚ÙÙ„ Ù¾ÛŒØ§Ù… ÙˆØ±ÙˆØ¯ Ùˆ Ø®Ø±ÙˆØ¬ : "..settings.lock_tgservice.."\nðŸ”¹Ù‚ÙÙ„ Ø§Ø³ØªÛŒÚ©Ø± : "..settings.lock_sticker.."\nðŸ”¸Ù¾Ø§Ø¨Ù„ÛŒÚ© : "..settings.public.."\nðŸ”¹Ø§Ø¬Ø±Ø§ÛŒ Ø¨Ù‡ Ø´Ø¯Øª ØªÙ†Ø¸ÛŒÙ…Ø§Øª: "..settings.strict.."\n@Gold_Team"
   return text
 end
 
@@ -636,7 +636,7 @@ local function modlist(msg)
     return 'No moderator in this group.'
   end
   local i = 1
-  local message = '\nList of moderators for ' .. string.gsub(msg.to.print_name, '_', ' ') .. ':\n'
+  local message = '\nÙ„ÛŒØ³Øª Ù…Ø¯ÛŒØ±Ø§Ù† Ú¯Ø±ÙˆÙ‡ ' .. string.gsub(msg.to.print_name, '_', ' ') .. ':\n'
   for k,v in pairs(data[tostring(msg.to.id)]['moderators']) do
     message = message ..i..' - '..v..' [' ..k.. '] \n'
     i = i + 1
@@ -649,7 +649,7 @@ function get_message_callback(extra, success, result)
 	local get_cmd = extra.get_cmd
 	local msg = extra.msg
 	local data = load_data(_config.moderation.data)
-	local print_name = user_print_name(msg.from):gsub("‮", "")
+	local print_name = user_print_name(msg.from):gsub("â€®", "")
 	local name_log = print_name:gsub("_", " ")
     if get_cmd == "id" and not result.action then
 		local channel = 'channel#id'..result.to.peer_id
@@ -750,7 +750,7 @@ function get_message_callback(extra, success, result)
 	elseif get_cmd == "promote" then
 		local receiver = result.to.peer_id
 		local full_name = (result.from.first_name or '')..' '..(result.from.last_name or '')
-		local member_name = full_name:gsub("‮", "")
+		local member_name = full_name:gsub("â€®", "")
 		local member_username = member_name:gsub("_", " ")
 		if result.from.username then
 			member_username = '@'.. result.from.username
@@ -763,7 +763,7 @@ function get_message_callback(extra, success, result)
 		end
 	elseif get_cmd == "demote" then
 		local full_name = (result.from.first_name or '')..' '..(result.from.last_name or '')
-		local member_name = full_name:gsub("‮", "")
+		local member_name = full_name:gsub("â€®", "")
 		local member_username = member_name:gsub("_", " ")
     if result.from.username then
 		member_username = '@'.. result.from.username
@@ -965,7 +965,7 @@ local function in_channel_cb(cb_extra, success, result)
   local receiver = cb_extra.receiver
   local msg = cb_extra.msg
   local data = load_data(_config.moderation.data)
-  local print_name = user_print_name(cb_extra.msg.from):gsub("‮", "")
+  local print_name = user_print_name(cb_extra.msg.from):gsub("â€®", "")
   local name_log = print_name:gsub("_", " ")
   local member = cb_extra.username
   local memberid = cb_extra.user_id
@@ -1118,7 +1118,7 @@ local function run(msg, matches)
 	if msg.to.type == 'channel' then
 	local support_id = msg.from.id
 	local receiver = get_receiver(msg)
-	local print_name = user_print_name(msg.from):gsub("‮", "")
+	local print_name = user_print_name(msg.from):gsub("â€®", "")
 	local name_log = print_name:gsub("_", " ")
 	local data = load_data(_config.moderation.data)
 		if matches[1] == 'add' and not matches[2] then
@@ -1268,7 +1268,7 @@ local function run(msg, matches)
 				resolve_username(username,  callbackres, cbres_extra)
 			else
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested SuperGroup ID")
-				return "SuperGroup ID for " ..string.gsub(msg.to.print_name, "_", " ").. ":\n\n"..msg.to.id
+				return "SuperGroup ID" ..string.gsub(msg.to.print_name, "_", " ").. ":\n\n"..msg.to.id.."\n\nYour ID :"..msg.from.id.."\nUsername : @"..msg.from.username.."\nYour Name : "..msg.from.print_name.."\nChannel ID : @Gold_Team"
 			end
 		end
 
@@ -1964,7 +1964,7 @@ local function run(msg, matches)
 		end
 
 		if matches[1] == 'help' and not is_owner(msg) then
-			text = "Message /superhelp to @Teleseed in private for SuperGroup help"
+			text = "Ø¨Ø±Ø§ÛŒ Ø´Ù…Ø§ Ù…Ø¬Ø§Ø² Ù†ÛŒØ³Øª"
 			reply_msg(msg.id, text, ok_cb, false)
 		elseif matches[1] == 'help' and is_owner(msg) then
 			local name_log = user_print_name(msg.from)
@@ -2031,59 +2031,59 @@ end
 
 return {
   patterns = {
-	"^[#!/]([Aa]dd)$",
-	"^[#!/]([Rr]em)$",
-	"^[#!/]([Mm]ove) (.*)$",
-	"^[#!/]([Ii]nfo)$",
-	"^[#!/]([Aa]dmins)$",
-	"^[#!/]([Oo]wner)$",
-	"^[#!/]([Mm]odlist)$",
-	"^[#!/]([Bb]ots)$",
-	"^[#!/]([Ww]ho)$",
-	"^[#!/]([Kk]icked)$",
-    "^[#!/]([Bb]lock) (.*)",
-	"^[#!/]([Bb]lock)",
-	"^[#!/]([Tt]osuper)$",
-	"^[#!/]([Ii][Dd])$",
-	"^[#!/]([Ii][Dd]) (.*)$",
-	"^[#!/]([Kk]ickme)$",
-	"^[#!/]([Kk]ick) (.*)$",
-	"^[#!/]([Nn]ewlink)$",
-	"^[#!/]([Ss]etlink)$",
-	"^[#!/]([Ll]ink)$",
-	"^[#!/]([Rr]es) (.*)$",
-	"^[#!/]([Ss]etadmin) (.*)$",
-	"^[#!/]([Ss]etadmin)",
-	"^[#!/]([Dd]emoteadmin) (.*)$",
-	"^[#!/]([Dd]emoteadmin)",
-	"^[#!/]([Ss]etowner) (.*)$",
-	"^[#!/]([Ss]etowner)$",
-	"^[#!/]([Pp]romote) (.*)$",
-	"^[#!/]([Pp]romote)",
-	"^[#!/]([Dd]emote) (.*)$",
-	"^[#!/]([Dd]emote)",
-	"^[#!/]([Ss]etname) (.*)$",
-	"^[#!/]([Ss]etabout) (.*)$",
-	"^[#!/]([Ss]etrules) (.*)$",
-	"^[#!/]([Ss]etphoto)$",
-	"^[#!/]([Ss]etusername) (.*)$",
-	"^[#!/]([Dd]el)$",
-	"^[#!/]([Ll]ock) (.*)$",
-	"^[#!/]([Uu]nlock) (.*)$",
-	"^[#!/]([Mm]ute) ([^%s]+)$",
-	"^[#!/]([Uu]nmute) ([^%s]+)$",
-	"^[#!/]([Mm]uteuser)$",
-	"^[#!/]([Mm]uteuser) (.*)$",
-	"^[#!/]([Pp]ublic) (.*)$",
-	"^[#!/]([Ss]ettings)$",
-	"^[#!/]([Rr]ules)$",
-	"^[#!/]([Ss]etflood) (%d+)$",
-	"^[#!/]([Cc]lean) (.*)$",
-	"^[#!/]([Hh]elp)$",
-	"^[#!/]([Mm]uteslist)$",
-	"^[#!/]([Mm]utelist)$",
-    "[#!/](mp) (.*)",
-	"[#!/](md) (.*)",
+	"^([Aa]dd)$",
+	"^([Rr]em)$",
+	"^([Mm]ove) (.*)$",
+	"^([Ii]nfo)$",
+	"^([Aa]dmins)$",
+	"^([Oo]wner)$",
+	"^([Mm]odlist)$",
+	"^([Bb]ots)$",
+	"^([Ww]ho)$",
+	"^([Kk]icked)$",
+    "^([Bb]lock) (.*)",
+	"^([Bb]lock)",
+	"^([Tt]osuper)$",
+	"^([Ii][Dd])$",
+	"^([Ii][Dd]) (.*)$",
+	"^([Kk]ickme)$",
+	"^([Kk]ick) (.*)$",
+	"^([Nn]ewlink)$",
+	"^([Ss]etlink)$",
+	"^([Ll]ink)$",
+	"^([Rr]es) (.*)$",
+	"^([Ss]etadmin) (.*)$",
+	"^([Ss]etadmin)",
+	"^([Dd]emoteadmin) (.*)$",
+	"^([Dd]emoteadmin)",
+	"^([Ss]etowner) (.*)$",
+	"^([Ss]etowner)$",
+	"^([Pp]romote) (.*)$",
+	"^([Pp]romote)",
+	"^([Dd]emote) (.*)$",
+	"^([Dd]emote)",
+	"^([Ss]etname) (.*)$",
+	"^([Ss]etabout) (.*)$",
+	"^([Ss]etrules) (.*)$",
+	"^([Ss]etphoto)$",
+	"^([Ss]etusername) (.*)$",
+	"^([Dd]el)$",
+	"^([Ll]ock) (.*)$",
+	"^([Uu]nlock) (.*)$",
+	"^([Mm]ute) ([^%s]+)$",
+	"^([Uu]nmute) ([^%s]+)$",
+	"^([Mm]uteuser)$",
+	"^([Mm]uteuser) (.*)$",
+	"^([Pp]ublic) (.*)$",
+	"^([Ss]ettings)$",
+	"^([Rr]ules)$",
+	"^([Ss]etflood) (%d+)$",
+	"^([Cc]lean) (.*)$",
+	"^([Hh]elp)$",
+	"^([Mm]uteslist)$",
+	"^([Mm]utelist)$",
+    "(mp) (.*)",
+	"(md) (.*)",
     "^(https://telegram.me/joinchat/%S+)$",
 	"msg.to.peer_id",
 	"%[(document)%]",
@@ -2098,3 +2098,6 @@ return {
 }
 --End supergrpup.lua
 --By @Rondoozle
+
+
+
