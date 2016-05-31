@@ -52,11 +52,11 @@ local function chat_list(msg)
 			--if m == 'public' then
 				--public = n
 			--end
-			if public == 'no' then 
+			if public == 'no' then
 				group_info = ""
 			elseif m == 'set_name' and public == 'yes' then
 				name = n:gsub("", "")
-				chat_name = name:gsub("‮", "")
+				chat_name = name:gsub("?", "")
 				group_name_id = name .. '\n(ID: ' ..group_id.. ')\n\n'
 				if name:match("[\216-\219][\128-\191]") then
 					group_info = i..' - \n'..group_name_id
@@ -181,9 +181,9 @@ if to == 'user' or service or is_admin1(msg) and to == "chat" or to == "channel"
 		local group_name = string.gsub(msg.to.print_name, '_', ' ')
 		savelog(msg.from.id, "Added Support member "..user_name.." to chat "..group_name.." (ID:"..msg.to.id..")")
 		if username then
-			send_large_msg("user#id"..user_id, "Added support member\n@"..username.."["..user_id.."] to chat:\n 👥 "..group_name.." (ID:"..msg.to.id..")" )
+			send_large_msg("user#id"..user_id, "Added support member\n@"..username.."["..user_id.."] to chat:\n ?? "..group_name.." (ID:"..msg.to.id..")" )
 		else
-			send_large_msg("user#id"..user_id, "Added support member\n["..user_id.."] to chat:\n 👥 "..group_name.." (ID:"..msg.to.id..")" )
+			send_large_msg("user#id"..user_id, "Added support member\n["..user_id.."] to chat:\n ?? "..group_name.." (ID:"..msg.to.id..")" )
 		end
 	end
 	if msg.service and user_type == "admin" and msg.action.type == "chat_add_user" and msg.from.id == 0 then
@@ -192,9 +192,9 @@ if to == 'user' or service or is_admin1(msg) and to == "chat" or to == "channel"
 		local username = msg.action.user.username
 		savelog(msg.from.id, "Added Admin "..user_name.."  "..user_id.." to chat "..group_name.." (ID:"..msg.to.id..")")
 		if username then
-			send_large_msg("user#id"..user_id, "Added admin\n@"..username.."["..user_id.."] to chat:\n 👥 "..group_name.." (ID:"..msg.to.id..")" )
+			send_large_msg("user#id"..user_id, "Added admin\n@"..username.."["..user_id.."] to chat:\n ?? "..group_name.." (ID:"..msg.to.id..")" )
 		else
-			send_large_msg("user#id"..user_id, "Added admin:\n["..user_id.."] to chat:\n 👥 "..group_name.." (ID:"..msg.to.id..")" )
+			send_large_msg("user#id"..user_id, "Added admin:\n["..user_id.."] to chat:\n ?? "..group_name.." (ID:"..msg.to.id..")" )
 		end
 	end
 
@@ -208,7 +208,7 @@ if to == 'user' or service or is_admin1(msg) and to == "chat" or to == "channel"
 
 	if matches[1] == 'help' and msg.to.type == 'user' or matches[1] == 'pmhelp' and is_admin1(msg) and msg.to.type ~= 'user' then
       	savelog(msg.to.id, name_log.." ["..msg.from.id.."] used pm help")
-		text = "@gold_Team"
+		text = "Hi "..msg.from.first_name.." For join to Support Group send\nJoin our group\n======================\nYour name: "..msg.from.first_name.."\nYou username: @"..(msg.from.username or "----" ).."\nYour id: "..msg.from.id.."\nBot id: "..msg.to.id.."\n@Gold_Team"
      	return text
     end
 
@@ -244,17 +244,19 @@ end
 return {
     patterns = {
 	"^(help)$",
-	"^(pmhelp)$",
+--	"^(pmhelp)$",
 	"^(superhelp)$",
     "^(chats)$",
     "^(chatlist)$",
     "^(join) (%d+)$",
-	"^(join) (.*) (support)$",
+--	"^(join) (.*) (support)$",
     "^(kickme) (.*)$",
     "^!!tgservice (chat_add_user)$",
     },
     run = run,
 	pre_process = pre_process
 }
+
+
 
 
