@@ -1,0 +1,145 @@
+do
+
+function run(msg, matches)
+  return [[ 🔴لیست کامند های سوپر گروه حفاظت شده توسط گلد
+
+💢 info
+تمامی اطلاعات راجبع سوپر گروه را نشان میدهد
+
+💢 admins
+لیست ادمین های سوپر گروه
+
+💢owner
+نام صاحب سوپر گروه
+
+💢 modlist
+لیست مدیر های سوپر گروه
+
+💢bots
+لیست بات های سوپر گروه
+
+💢who
+لیست تمامی افراد عضو سوپر گروه
+
+💢 block
+اخراج کردن و بن کردن یک یوزر از سوپر گروه (بصورت رسمی از سوی تلگرام)
+
+💢 ban
+بن کردن یک نفر از سوپرگروه (بصورت غیر رسمی از سمت بات)
+
+💢 unban
+آن بن کردن یک نفر از سوپر گروه
+
+💢 id
+نشان دادن آیدی سوپر گروه / آیدی شخص
+- برای ایدی یوزر ها: !id @UserName
+
+💢 id from
+دریافت آیدی از پیامی که فوروارد شده
+
+💢 kickme
+اخراج کردن یک نفر از سوپر گروه
+
+💢 setowner
+تعویض صاحب سوپر گروه
+
+💢 promote [username|id]
+ترفیع درجه یک فرد به مدیر
+
+💢 demote [username|id]
+تنزیل درجه یک فرد به عضو معمولی
+
+💢 setname
+تعویض نام سوپر گروه
+
+💢 setphoto
+تعویض عکس سوپر گروه
+
+💢 setrules
+نوشتن قوانین سوپر گروه
+
+💢setabout
+نوشتن "درباره" سوپر گروه (بالای لیست ممبر ها می آید)
+
+💢 save [value] <text>
+ذخیره سازی  اطلاعات اضافه در رابطه با چت
+
+💢 get [value]
+دریافت همون چیزی که تو کامند بالایی ست کردید 😐
+
+💢 newlink
+ساخت لینک جدید
+
+💢 link
+دریافت لینک گروه
+
+💢 rules
+مشاهده قوانین گروه
+
+💢 lock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict]
+قفل کردن ستینگ گروه
+*RTL = راست چین (پیام های از راست به چپ)*
+*strict: enable strict settings enforcement (violating user will be kicked)*
+
+💢 unlock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict]
+باز کردن ستینگ گروه
+*RTL = راست چین (پیام های از راست به چپ)*
+*strict: disable strict settings enforcement (violating user will not be kicked)*
+
+💢 mute [all|audio|gifs|photo|video|service]
+میوت (خفه) کردن
+- پیام های میوت شده درجا پاک میشوند
+
+💢 unmute [all|audio|gifs|photo|video|service]
+آن میوت کردن
+💢 setflood [value]
+ست کردن تعداد پیام های پشت سر هم تا یوزر کیک شود
+- مثلا اگر 10 باشد, فردی 10 پیام پشت هم بفرستد, کیک میشود.
+
+💢 settings
+دریافت ستینگ سوپر گروه
+
+💢 muteslist
+نشان دادن میوت های سوپر گروه
+
+💢 muteuser [username]
+خفه کردن یک کاربر در سوپر گروه
+- اگر کاربر خفه شده پیامی بفرستد, درجا پیام حذف میگردد
+
+💢 mutelist
+لیست افراد میوت شده
+
+💢 banlist
+لیست افراد بن شده
+
+💢 clean [rules|about|modlist|mutelist]
+پاک کردن یکی از متغیر های بالا
+
+💢 del
+پاک کردن یک مسیج (ریپلای کنید)
+
+💢 public [yes|no]
+ویزیبیلیتی پیام ها
+
+💢 res [username]
+دریافت نام و آیدی یک یوزر با یوزرنیم (مثلا @UserName)
+
+
+💢 log
+دریافت لاگ گروه
+*مثلا سرچ کنید برای دلیل کیک شدن [#RTL|#spam|#lockmember]
+
+           » @Gold_Team «      ]]
+end
+
+return {
+  description = "نمایش راهنمای ربات",
+  usage = "نمایش راهنمای ربات",
+  patterns = {
+    "^راهنما$",
+    "^راهنما$"
+  },
+  run = run
+}
+
+end
